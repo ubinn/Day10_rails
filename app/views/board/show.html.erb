@@ -1,7 +1,8 @@
-<h2><%= @board.title %></h2>
+<h2><%= @post.title %></h2>
 <hr>
-<p><%= @board.contents %></p>
+<p><%= @post.contents %></p>
+<p>작성자 ㅣ <%= @post.user.user_id %></p>
 <%= link_to "목록", "/" %>
-<%= link_to "수정","/board/#{@board.id}/edit" %>
-<%= link_to "삭제","/board/#{@board.id}", method: "delete" %>
+<%= link_to "수정","/board/#{@post.id}/edit" %>
+<%= link_to "삭제","/board/#{@post.id}", method: "delete" %>
 <!-- 기본적으로 <a>는 get방식 ! 그러니까 상세보기로 가겠지. -->

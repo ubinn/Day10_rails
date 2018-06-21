@@ -1,7 +1,7 @@
 class UserController < ApplicationController
   def index
     @users = User.all
-    @login_user=User.find(session[:login_user]) if session[:login_user]
+    @current_user=User.find(session[:current_user]) if session[:current_user]
     
   end
 
@@ -48,7 +48,8 @@ class UserController < ApplicationController
     user = User.find_by_user_id(id) # 숫자가 아닌 사용자가 입력한 아이디로 찾는고야. 
     
     if !user.nil? and user.password.eql?(pw)  # 해당 user_id 로 가입한 유저가 있고, 패스워드도 일치하는 경우
-      session[:login_user]=user.id
+  # if user.present? 도 가능 ! 
+      session[:current_user]=user.id
       flash[:success]="로그인 되었습니다."
       redirect_to "/users"
     
@@ -58,7 +59,7 @@ class UserController < ApplicationController
     end
   end
   def logout
-    session.delete(:login_user)
+    session.delete(:current_user)
     flash[:success]="로그아웃에 성공하셨습니다."
     redirect_to "/users"
   end

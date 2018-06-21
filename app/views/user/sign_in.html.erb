@@ -1,6 +1,21 @@
-<h1>로그인 창</h1>
+<div class="container">
+    <br/>
+<h1 class="h3 mb-3 text-center font-weight-normal">Sign in</h1>
+
 <%= form_tag("/sign_in") do %>
-    <%= text_field_tag 'user_id',nil,placeholder:"ID" %>
-    <%= password_field_tag(:password ) %>
-    <%= submit_tag("로그인") %>
+  <div class="mt-5 mb-3 text-muted text-center">
+        
+    <div class="mt-5 mb-3 text-center form-label-group">
+    <%= text_field_tag 'user_id', nil , class: "form-control", placeholder: "아이디" %>
+    </div>
+    <div class="text-center form-label-group">
+        <%= password_field_tag 'password', nil , class: "form-control",placeholder: "비밀번호"  %>
+    </div>
+
+     <div class="mt-5 mb-3 text-muted text-center">
+        <%= submit_tag '로그인' , class: "btn btn-lg btn-info btn-block" %>
+     </div>
+  </div>
 <% end %>
+</div>
+

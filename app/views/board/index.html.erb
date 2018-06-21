@@ -1,6 +1,17 @@
+<% unless user_signed_in? %>
+<p>현재 로그인된 유저가 없습니다.</p>
+<%= link_to "로그인", "/sign_in" %>
+<% else %>
+<p> 현재 로그인 된 유저 : <%= @current_user.user_id %></p>
+<%= link_to "로그아웃", "/logout" %>
+<% end %>
+
+
 <div>
     <% @boards.each do |post| %>
-    <a href="/board/#{post.id}"><%=post.title%></a>
+    <a href="/board/<%=post.id%>"><%=post.title%></a>
     <% end %>
 </div>
+<hr/>
+
 <%= link_to "새글쓰기","/board/new" %>

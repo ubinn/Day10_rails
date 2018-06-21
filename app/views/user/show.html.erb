@@ -1,5 +1,9 @@
 <h3>아이디 : <%= @user.user_id %></h3>
 <p>( Last login at : <%=@user.ip_address %> )</p>
 <hr/>
-<%= link_to "목록", "/users" %>
-<%= link_to "수정","/user/#{@user.id}/edit" %>
+<p> 이 유저가 작성한 글 </p>
+<% @user.posts.each do |post| %>
+    <%= link_to post.title , "/board/#{post.id}" %> <br/>
+<% end %>
+<hr/>
+<%= link_to "회원 정보 수정","/user/#{@user.id}/edit" %>
