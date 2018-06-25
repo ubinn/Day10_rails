@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :themes
     root 'board#index'
     
     get'/boards' => 'board#index'

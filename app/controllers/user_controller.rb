@@ -38,6 +38,7 @@ class UserController < ApplicationController
   def sign_in
     # 로그인이 되어있는지 확인하고,
     # 로그인이 되어있으면 원래 페이지로 돌아가기
+    @sign_up = "뿌앵뿌뿌뿌얭얭얘얘"
   end
   
   def login

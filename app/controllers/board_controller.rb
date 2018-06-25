@@ -7,6 +7,7 @@ class BoardController < ApplicationController
 before_action :authenticate_user!, except: [:index, :show]
   
   def index
+    @title = "타이틀이지롱"
     @boards =Post.all
     puts current_user.user_id if !current_user.nil?
   end
@@ -20,27 +21,22 @@ before_action :authenticate_user!, except: [:index, :show]
   end
 
   def create
-    p1 = Post.new
-    p1.title = params[:title]
-    p1.contents = params[:content]
-     # post를 등록할 때 이 글을 작성한 사람은 현재 로그인 유저이다.
-    p1.user_id = current_user.id
-    p1.save
+    p1 = Post.create(post_params)
+    # p1.title = params[:title]
+    # p1.contents = params[:content]
+    # p1.user_id = current_user.id
+    #  p1.save
+   flash[:success]="글이 작성되었습니다."
     redirect_to "/board/#{p1.id}"
- 
-    
-    
-    
-    
   end
   
   def edit
   end
 
   def update
-    @post.contents=params[:content]
-    @post.title =params[:title]
-    @post.save
+    p post_params
+    @post.update(post_params) 
+    flash[:success]="글이 수정되었습니다."
     redirect_to "/board/#{@post.id}"
   end
 
@@ -53,4 +49,9 @@ before_action :authenticate_user!, except: [:index, :show]
     @post = Post.find(params[:id])
   end
   # set_post 라는 액션(메소드)가 다른곳에서 불리면 @post 변수는 계속 유지
+  
+  def post_params
+    # 스캐폴드때 한대. params.fetch(:post, {}).permit(:title, :content)
+    {title: params[:title], contents: params[:content], user_id: current_user.id}
+  end
 end
